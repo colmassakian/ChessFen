@@ -6,17 +6,19 @@ class piece:
 		self.rank = rank
 		self.pieceID = pieceID
 
+# https://www.chess.com/puzzles/battle/2KDwKNvb8
 def getFEN(link): 
 	activePieces = []
+
+	# TODO: Use chrome driver in headless form
 	driver = webdriver.Firefox()
-	# https://www.chess.com/puzzles/battle/2KDwKNvb8
 	driver.get(link)
 
 	parent = driver.find_element_by_class_name('pieces')
 	try:
 	    piecesList = parent.find_elements_by_tag_name('div')
 	except:
-		print("NO")
+		print("Error opening link")
 
 	for currPiece in piecesList:
 		# Find currPiece id in dom, if error, continue
